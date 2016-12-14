@@ -1,0 +1,159 @@
+{# O EXTEND QUER DIZER QUE ESTÁ HERDANDO O TEMPLATE, E NESSE CASO, DO TEMPLATE 'template_base.html' #}
+{% extends 'template_base.html' %}
+
+{% block menu_particular %}
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Usuários<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="active"><a href="add_usuario"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a></li>
+            <li><a href="ger_usuarios"><i class="fa fa-gear fa-fw"></i> Todos</a></li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Vincular a um certificado</a></li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Certificados<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="cadastrar_certificado"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a>
+            </li>
+            <li><a href="ger_certificados"><i class="fa fa-gear fa-fw"></i> Todos</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Eventos<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="cadastrar_evento"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a>
+            </li>
+            <li><a href="eventos_view"><i class="fa fa-gear fa-fw"></i> Todos</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>#NomeUsuário<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-unlock-alt fa-fw"></i> Mudar Senha</a>
+            </li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Meu Registro</a>
+            </li>
+            <li class="page-scroll">
+                <a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair</a>
+            </li>
+        </ul>
+    </li>
+
+{% endblock %}
+
+{% block conteudo_site %}
+
+    <section id="eventos_view">
+
+        <div class="col-xs-12 panel panel-default">
+            <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modalLabel">Excluir Usuário</h4>
+                        </div>
+                        <div class="modal-body">
+                            Deseja realmente excluir este usuário?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Sim</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+            <div id="main" class="container-fluid" style="margin-top: 50px">
+
+                <div id="top" class="row">
+                    <div class="col-sm-3">
+                        <h3>Eventos</h3>
+                    </div>
+                    <div class="col-sm-6">
+
+                        <div class="input-group h2">
+                            <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Usuários">
+                            <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">
+                                        <span class="glyphicon glyphicon-search"></span>
+					                </button>
+				                </span>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="cadastrar_evento" class="btn btn-primary pull-left h2">Novo Evento</a>
+                    </div>
+                </div> <!-- /#top -->
+
+                <hr />
+                <div id="list" class="row">
+
+                    <div class="table-responsive col-md-12">
+                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome do Evento</th>
+                                <th>Data de Realização</th>
+                                <th>Duração</th>
+                                <th>Local do Evento</th>
+                                <th>Responsável</th>
+                                <th class="actions">Ações</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for evento in eventos_cad %}
+                                <tr>
+                                    <td>{{ evento[0] }}</td>
+                                    <td>{{ evento[1] }}</td>
+                                    <td>{{ evento[2] }}</td>
+                                    <td>{{ evento[3] }}</td>
+                                    <td>{{ evento[4] }}</td>
+                                    <td>{{ evento[5] }}</td>
+                                    <td class="actions">
+                                        <a class="btn btn-success btn-xs" href="view_certificado">Certificado</a>
+                                        <a class="btn btn-warning btn-xs" href="#">Editar Registro</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <br>
+                        <br>
+                    </div>
+
+                </div> <!-- /#list -->
+
+                <div id="bottom" class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination">
+                            <li class="disabled"><a>&lt; Anterior</a></li>
+                            <li class="disabled"><a>1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
+                        </ul><!-- /.pagination -->
+                        <br>
+                        <br>
+                        <a href="#top">Voltar ao topo</a>
+                        <br>
+                        <br>
+                    </div>
+                </div> <!-- /#bottom -->
+            </div>
+        </div>
+    </section>
+{% endblock %}

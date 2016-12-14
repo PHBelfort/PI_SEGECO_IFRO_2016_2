@@ -1,0 +1,122 @@
+{# O EXTEND QUER DIZER QUE ESTÁ HERDANDO O TEMPLATE, E NESSE CASO, DO TEMPLATE 'template_base.html' #}
+{% extends 'template_base.html' %}
+
+{% block menu_site %}
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="page-scroll">
+                <a href="index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Início</a>
+            </li>
+            {% block menu_particular  %}
+                <li>
+                    <a href="acessar"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Entrar</a>
+                </li>
+                <li>
+                    <a href="validar_certificado"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Validar Certificado</a>
+                </li>
+                <li>
+                    <a href="#desenvolvedores"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Desenvolvedores</a>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+{% endblock %}
+
+{% block conteudo_site %}
+
+    <!-- Seção sobre -->
+    <section class="info" id="about">
+        <div class="container">
+            <div class="row">
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="col-lg-12 text-center">
+                    <h2>SEGECO</h2>
+                    <br>
+                    <br>
+
+                    <h3>Sistema de Gerenciamento de Certificados Online Com Validador</h3>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <p CLASS="-align-justify">O <b>SEGECO</b> é um projeto desenvolvido por uma equipe de alunos do 2º Período do Curso de
+                    Informática para <I>Internet</I> do Instituto Federal de Educação, Ciência e Tecnologia de Rondônia - IFRO,
+                    Campus Zona Norte, em parceria com o
+                    Professor Coordenador Felipe Cólen, a pedido da Coordenação de Gestão de Tecnologia da Informação do mesmo Campus.
+                </p>
+            <br>
+            <br>
+
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <hr class="star-primary">
+        </div>
+    </section>
+    <section class="success" id="desenvolvedores">
+        <div class="container">
+
+            <div class="row">
+                <br>
+                <br>
+                <div class="col-lg-12 text-center">
+                    <h3>Desenvolvedores</h3>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+
+                <div class="col-sm-3 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/static/img/portfolio/cabin.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-3 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/static/img/portfolio/cake.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-3 portfolio-item">
+                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/static/img/portfolio/safe.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-3 portfolio-item">
+                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/static/img/portfolio/submarine.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

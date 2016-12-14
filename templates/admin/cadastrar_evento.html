@@ -1,0 +1,119 @@
+{# O EXTEND QUER DIZER QUE ESTÁ HERDANDO O TEMPLATE, E NESSE CASO, DO TEMPLATE 'template_base.html' #}
+{% extends 'template_base.html' %}
+
+{% block menu_particular %}
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Usuários<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="active"><a href="add_usuario"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a></li>
+            <li><a href="ger_usuarios"><i class="fa fa-gear fa-fw"></i> Todos</a></li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Vincular a um certificado</a></li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Certificados<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="cadastrar_certificado"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a>
+            </li>
+            <li><a href="ger_certificados"><i class="fa fa-gear fa-fw"></i> Todos</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Eventos<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="cadastrar_evento"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a>
+            </li>
+            <li><a href="eventos_view"><i class="fa fa-gear fa-fw"></i> Todos</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>#NomeUsuário<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-unlock-alt fa-fw"></i> Mudar Senha</a>
+            </li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Meu Registro</a>
+            </li>
+            <li class="page-scroll">
+                <a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair</a>
+            </li>
+        </ul>
+    </li>
+
+{% endblock %}
+
+
+{% block conteudo_site %}
+
+    <!-- Seção Cadastro -->
+    <section id="cadastrar_evento">
+        <div class="container">
+            <br><br><br>
+            <div class="row panel panel-default">
+                <div class="container">
+                    <div class="form-group">
+                        <h4> Preencha os campos abaixo: </h4>
+                    </div>
+                    <br>
+                    <form class="container" action="{{ url_for('cadastrar_evento') }}" method="post">
+                        <div class="form-group col-md-7">
+                            <label for="nome_evento">Nome do Evento</label>
+                            <input type="text" placeholder="Campo Obrigatório" class="form-control" name="nome_evento" required >
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="data_realizacao">Data de Realização:</label>
+                            <input id="date" type="text" placeholder="Campo Obrigatório" class="form-control date" name="data_realizacao"  required>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="carga_horaria">Duração</label>
+                            <input type="text" placeholder="Campo Obrigatório" class="form-control" name="carga_horaria"  required>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="local_evento">Local do Evento</label>
+                            <input type="text" placeholder="Campo Obrigatório" class="form-control" name="local_evento"  required>
+                        </div>
+
+                        <div class="form-group col-md-5">
+                            <label for="responsavel">Responsável Pelo Evento</label>
+                            <input type="text" placeholder="Campo Obrigatório" class="form-control" name="responsavel" required>
+                        </div>
+
+                        <div class="form-group col-md-5">
+                            <br>
+                            <br>
+                            <label for="layout_certificados"> Enviar Layout do Certificado (Se for o caso)</label>
+                                <input type="file" name="layout_certificados" value="fileupload">
+                            <br>
+                            <br>
+                        </div>
+                        <br>
+                        <hr/>
+                        <div id="actions" class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn">Salvar</button>
+                                <a href="eventos_view" class="btn">Cancelar</a>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

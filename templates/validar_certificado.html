@@ -1,0 +1,80 @@
+{# O EXTEND QUER DIZER QUE ESTÁ HERDANDO O TEMPLATE, E NESSE CASO, DO TEMPLATE 'template_base.html' #}
+{% extends 'template_base.html' %}
+
+{% block menu_site %}
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="page-scroll">
+                <a href="index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Início</a>
+            </li>
+            {% block menu_particular  %}
+                <li>
+                    <a href="acessar"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Entrar</a>
+                </li>
+                <li>
+                    <a href="validar_certificado"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Validar Certificado</a>
+                </li>
+                <li>
+                    <a href="sobre"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sobre</a>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+{% endblock %}
+
+{% block conteudo_site %}
+
+    <section id="validar_certificado">
+        <div class="container">
+            <div class="row">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div class="row">
+                <div class="container col-lg-6 col-lg-offset-3  panel panel-default">
+                    <div class="col-lg-11 col-lg-offset-1">
+                        <div class="row">
+                            <h3 >Informe o Código do Certficado:</h3>
+                        </div>
+                        <form name="sentMessage" id="contactForm" novalidate>
+                            <div class="col-lg-11 col-lg-offset-1">
+                                <div class="row control-group">
+                                    <div class="form-group">
+                                        <div class="form-group col-xs-10 floating-label-form-group controls">
+                                            <label><img src="../static/img/icons_extras/16px/056-barcode.png">   Inserindo Código do Certificado:</label>
+                                            <input type="text" class="form-control" placeholder="Código do Certificado:" id="codigo_certificado" required data-validation-required-message="Favor, inserir número do certificado.">
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group col-xs-10">
+                                    <button type="submit" class="btn btn-success btn-lg btn-block">Consultar</button>
+                                </div>
+                                <div class="text-center">
+                                    <div class="form-group col-xs-10">
+                                        <a href="login"><button type="button" class="btn btn-primary">Entrar</button></a>
+                                    </div>
+                                    <div class="form-group col-xs-10">
+                                        <a href="contato">Central de Ajuda</a>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+    </section>
+
+{% endblock %}
+
+

@@ -1,0 +1,44 @@
+.fundo {
+  position: relative;
+  width: 1200px;
+  height: 800px;
+}
+
+.t-antes-nome {
+  position: absolute;
+  top: 330px;
+  right: 150px;
+  width: 930px;
+  height: 120px;
+  text-align: justify;
+  text-indent: 10%;
+}
+
+.t-nome {
+  position: absolute;
+  top: 370px;
+  right: 150px;
+  width: 770px;
+  height: 120px;
+  text-align: justify;
+  text-indent: 10%;
+}
+
+.t-pos-nome {
+  position: absolute;
+  top: 415px;
+  right: 150px;
+  width: 930px;
+  height: 120px;
+  text-align: justify;
+  text-indent: 55%;
+}
+
+.codigo_validacao {
+  position: absolute;
+  top: 716px;
+  right: 290px;
+  width: 620px;
+  height: 20px;
+}
+

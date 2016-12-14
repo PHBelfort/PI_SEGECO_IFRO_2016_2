@@ -1,0 +1,195 @@
+{# O EXTEND QUER DIZER QUE ESTÁ HERDANDO O TEMPLATE, E NESSE CASO, DO TEMPLATE 'template_base.html' #}
+{% extends 'template_base.html' %}
+
+{% block menu_particular %}
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Usuários<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="active"><a href="add_usuario"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a></li>
+            <li><a href="ger_usuarios"><i class="fa fa-gear fa-fw"></i> Todos</a></li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Vincular a um certificado</a></li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Certificados<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="cadastrar_certificado"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a>
+            </li>
+            <li><a href="ger_certificados"><i class="fa fa-gear fa-fw"></i> Todos</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Eventos<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="cadastrar_evento"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a>
+            </li>
+            <li><a href="eventos_view"><i class="fa fa-gear fa-fw"></i> Todos</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>#NomeUsuário<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-unlock-alt fa-fw"></i> Mudar Senha</a>
+            </li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Meu Registro</a>
+            </li>
+            <li class="page-scroll">
+                <a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair</a>
+            </li>
+        </ul>
+    </li>
+
+{% endblock %}
+
+
+{% block conteudo_site %}
+
+<section id="tela_admin">
+
+    <div class="col-xs-12 panel panel-default">
+
+        <br><br>
+        <!-- Modal -->
+        <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalLabel">Excluir usuário</h4>
+                    </div>
+                    <div class="modal-body">
+                        Deseja realmente excluir este usuário?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Sim</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main" class="container-fluid panel panel-default">
+            <h3 class="page-header">{{ nome [2] }}</h3>
+            <form class="col s12" action="{{ url_for('editar_usuario', id= nome [0]) }}" method="post">
+                <div class="form-group col-md-3">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" placeholder="Campo Obrigatório" class="form-control cpf" name="cpf" value="{{ nome [1] }}" required>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="nome_completo">Nome completo:</label>
+                    <input type="text" placeholder="Campo Obrigatório" class="form-control" name="nome" value="{{ nome [2] }}" required>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="data_nasc">Data de Nascimento:</label>
+                    <input id="date" type="text" placeholder="Campo Obrigatório" class="form-control date" name="data_nascimento" value="{{ nome[3] }}"  required>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="sexo">Sexo:</label>
+                    <select class="form-control" name="sexo" value="{{ nome[4] }}" required>
+                        <option>--------</option>
+                        <option>Feminino</option>
+                        <option>Masculino</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-5">
+                    <label for="email">Informe seu e-mail:</label>
+                    <input id="email" type="email" placeholder="Campo Obrigatório" class="form-control" name="email" value="{{ nome[5] }}" required>
+                </div>
+                <br>
+                <div class="form-group col-md-2">
+                    <label for="n_celular">Nº Celular:</label>
+                    <input type="text" placeholder="(99) 9999-9999" class="form-control phone_with_ddd" name="n_celular" value="{{ nome[6] }}"  required>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="tel_fixo">Telefone Fixo:</label>
+                    <input type="text" class="form-control phone_with_ddd" name="tel_fixo" value="{{ nome[7] }}">
+                </div>
+
+                <div class="form-group col-md-5">
+                    <label for="campus_polo">Campus/Polo (Se for o caso):</label>
+                    <select class="form-control" name="campus_polo" required value="{{ nome[8] }}">
+                        <option>------------------</option>
+                        <option>Campus Ariquemes</option>
+                        <option>Campus Cacoal</option>
+                        <option>Campus Colorado do Oeste</option>
+                        <option>Campus Guajará Mirim</option>
+                        <option>Campus Jaru</option>
+                        <option>Campus Ji-Paraná</option>
+                        <option>Campus Porto Velho Calama</option>
+                        <option>Campus Porto Velho Reitoria</option>
+                        <option>Campus Porto Velho Zona Norte</option>
+                        <option>Campus Vilhena</option>
+                        <option>Polo Alta Floresta D'Oeste</option>
+                        <option>Polo Ariquemes</option>
+                        <option>Polo Buritis</option>
+                        <option>Polo Cacoal</option>
+                        <option>Polo Candeias do Jamari</option>
+                        <option>Polo Cerejeiras</option>
+                        <option>Polo Colorado do Oeste</option>
+                        <option>Polo Costa Marques</option>
+                        <option>Polo Cujubim</option>
+                        <option>Polo Espigão do Oeste</option>
+                        <option>Polo Guajará-Mirim</option>
+                        <option>Polo Jaru</option>
+                        <option>Polo Ji-Paraná</option>
+                        <option>Polo Machadinho do Oeste</option>
+                        <option>Polo Mirante da Serra</option>
+                        <option>Polo Nova Brasilândia</option>
+                        <option>Polo Nova Mamoré</option>
+                        <option>Polo Ouro Preto do Oeste</option>
+                        <option>Polo Porto Velho Centro</option>
+                        <option>Polo Porto Velho Extrema</option>
+                        <option>Polo Porto Velho Zona Norte</option>
+                        <option>Polo Presidente Médice</option>
+                        <option>Polo São Francisco do Guaporé</option>
+                        <option>Polo São Miguel do Guaporé</option>
+                        <option>Polo Vilhena</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="nome_completo">Curso/ Departamento:</label>
+                    <input type="text" class="form-control" name="curso_departamento" value="{{ nome[9] }}">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="senha">Senha:</label>
+                    <input id="passwordagain" type="password" placeholder="Campo Obrigatório" class="form-control password" name="senha" value="{{ nome[10] }}" required>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="senha">Confirmar Senha:</label>
+                    <input id="passwordagain" type="password" placeholder="Campo Obrigatório" class="form-control" name="conf_senha" value="{{ nome[11] }}" required>
+                </div>
+                <br>
+                <br>
+                <hr/>
+                <div id="actions" class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn">Salvar</button>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </form>
+            <br>
+            <br>
+        </div>
+    </div>
+</section>
+{% endblock %}

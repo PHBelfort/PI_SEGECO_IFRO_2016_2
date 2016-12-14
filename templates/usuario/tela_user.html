@@ -1,0 +1,105 @@
+{# O EXTEND QUER DIZER QUE ESTÁ HERDANDO O TEMPLATE, E NESSE CASO, DO TEMPLATE 'template_base.html' #}
+{% extends 'template_base.html' %}
+
+{% block menu_particular %}
+    <li>
+        <a href="tela_user"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Meus Certificados</a>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>#NomeUsuário<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-unlock-alt fa-fw"></i> Mudar Senha</a>
+            </li>
+            <li><a href="user_cadastro"><i class="fa fa-gear fa-fw"></i> Meu Registro</a>
+            </li>
+            <li class="page-scroll">
+                <a href="../index"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair</a>
+            </li>
+        </ul>
+    </li>
+{% endblock %}
+
+{% block conteudo_site %}
+
+    <section id="tela_user">
+        <div class="col-xs-12 panel panel-default">
+            <br><br>
+            <div id="main" class="container-fluid" style="margin-top: 50px">
+
+                <div id="top" class="row">
+                    <div class="col-sm-3">
+                        <h3>Certificados</h3>
+                    </div>
+                    <div class="col-sm-6">
+
+                        <div class="input-group h2">
+                            <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Certificados">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+				            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <hr />
+                <div id="list" class="row">
+
+                    <div class="table-responsive col-md-12">
+                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome do Evento</th>
+                                <th>Duração</th>
+                                <th class="actions">Ações</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for certificado in certificados %}
+                                <tr>
+                                    <td>{{ certificado[1] }}</td>
+                                    <td>{{ certificado[2] }}</td>
+                                    <td>{{ certificado[4] }}</td>
+                                    <td class="actions">
+                                        <a class="btn btn-success btn-xs" href="#">IMPRIMIR</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div> <!-- /#list -->
+
+                <div id="bottom" class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination">
+                            <li class="disabled"><a>&lt; Anterior</a></li>
+                            <li class="disabled"><a>1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
+                        </ul><!-- /.pagination -->
+                        <br>
+                        <br>
+                    </div>
+                </div> <!-- /#bottom -->
+            </div> <!-- /#main -->
+        </div>
+    </section>
+{% endblock %}

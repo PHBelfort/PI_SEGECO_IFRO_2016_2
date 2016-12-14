@@ -1,0 +1,114 @@
+{# O EXTEND QUER DIZER QUE ESTÁ HERDANDO O TEMPLATE, E NESSE CASO, DO TEMPLATE 'template_base.html' #}
+{% extends 'template_base.html' %}
+
+{% block menu_site %}
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="page-scroll">
+                <a href="index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Início</a>
+            </li>
+            {% block menu_particular  %}
+                <li>
+                    <a href="acessar"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Entrar</a>
+                </li>
+                <li>
+                    <a href="validar_certificado"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Validar Certificado</a>
+                </li>
+                <li>
+                    <a href="sobre"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sobre</a>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+{% endblock %}
+
+
+{% block conteudo_site %}
+
+    <section id="acessar">
+        <div class="container">
+
+            {#            pop-up recuperar senha#}
+            <div class="modal fade" id="recuperar_senha-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modalLabel">Recuperar Senha:</h4>
+                        </div>
+                        <form name="sentMessage" id="contactForm" novalidate>
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12">
+                                    <div class="form-group col-xs-10 floating-label-form-group controls">
+                                        <label><img src="../static/img/icons_extras/16px/391-mail4.png"> Inserindo Email...</label>
+                                        <input type="email" class="form-control" placeholder="Email:" id="email" required data-validation-required-message="Favor, insira seu email.">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Div login-->
+            <div class="row">
+                <div class="modal-login">
+                    <div class="modal-dialog">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <form class="col-xs-12 panel panel-default" action="{{ url_for('acessar_admin') }}" method="post" name="login" id="form_login" novalidate>
+                                <div class="text-center">
+                                    <h3 class="form-group col-xs-12">Entrar</h3>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label><img src="../static/img/icons_extras/16px/114-user.png">Inserindo CPF...</label>
+                                            <input type="text" class="form-control cpf" name="cpf" placeholder="CPF:" id="cpf" required data-validation-required-message="Favor, insira o seu CPF.">
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label><img src="../static/img/icons_extras/16px/143-key2.png"> Inserindo Senha...</label>
+                                            <input type="password" class="form-control" placeholder="Senha:" name="senha" id="senha" required data-validation-required-message="Favor, insira sua senha.">
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <div class="form-group col-xs-10">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input">
+                                        Lembrar-me
+                                    </label>
+                                </div>
+                                <br>
+                                <div class="form-group col-xs-12">
+                                    <button type="submit" class="btn btn-lg btn-success btn-block">Entrar</button>
+                                </div>
+                                <div class="text-center">
+
+                                    <div class="form-group col-xs-12">
+                                        <a href="cadastro"><button type="button" class="btn btn-primary">Cadastrar</button></a>
+                                    </div>
+                                    <div class="form-group col-xs-12">
+                                        <a href="#" data-toggle="modal" data-target="#recuperar_senha-modal">Recuperar Senha</a>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

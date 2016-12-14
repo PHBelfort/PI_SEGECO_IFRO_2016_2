@@ -1,0 +1,84 @@
+{# O EXTEND QUER DIZER QUE ESTÁ HERDANDO O TEMPLATE, E NESSE CASO, DO TEMPLATE 'template_base.html' #}
+{% extends 'template_base.html' %}
+
+
+{% block menu_particular %}
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Usuários<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="active"><a href="add_usuario"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a></li>
+            <li><a href="ger_usuarios"><i class="fa fa-gear fa-fw"></i> Todos</a></li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Vincular a um certificado</a></li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Certificados<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="cadastrar_certificado"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a>
+            </li>
+            <li><a href="ger_certificados"><i class="fa fa-gear fa-fw"></i> Todos</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>Eventos<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="cadastrar_evento"><i class="fa fa-unlock-alt fa-fw"></i> Novo</a>
+            </li>
+            <li><a href="eventos_view"><i class="fa fa-gear fa-fw"></i> Todos</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>#NomeUsuário<i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-unlock-alt fa-fw"></i> Mudar Senha</a>
+            </li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Meu Registro</a>
+            </li>
+            <li class="page-scroll">
+                <a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair</a>
+            </li>
+        </ul>
+    </li>
+
+{% endblock %}
+
+{% block conteudo_site %}
+
+    <section id="cadastrar_certificado">
+        <div class="container">
+            <br><br><br>
+            <div class="row">
+                <br>
+                <form class="container" action="{{ url_for('cadastrar_certificado') }}" method="post">
+                    <br>
+                    <div class="container">
+                        <img class="img-responsive"  src="../../static/img/certificados/layout.jpeg">
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <hr/>
+                    <div id="actions" class="row">
+                        <div class="col-md-12">
+                            <a href="#" class="btn btn-primary">Editar</a>
+                            <a href="eventos_view" class="btn">Fechar</a>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
